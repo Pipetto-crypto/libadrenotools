@@ -34,6 +34,14 @@ adrenotools_lib = shared_library(
 
 subdir('src/hook')
 
+adrenotools_dep = declare_dependency(
+    include_directories: adrenotools_inc,
+    link_with: adrenotools_lib,
+    dependencies: [libandroid_dep, liblog_dep],
+)
+
+meson.override_dependency('adrenotools', adrenotools_dep)
+
 # target_include_directories(['adrenotools', 'PUBLIC', 'include'])
 # target_include_directories(['adrenotools', 'PRIVATE', '.'])
 # target_compile_options(['adrenotools', 'PRIVATE', '-Wall', '-Wextra'])
